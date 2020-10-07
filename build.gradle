@@ -1,0 +1,45 @@
+// Define Plugins
+plugins {
+    id 'java-library'
+    id "io.freefair.lombok" version "4.1.6"
+    id 'application'
+}
+
+// Apply Plugins
+apply plugin: 'idea'
+apply plugin: 'java-library'
+apply plugin: 'application'
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+// Define Repositories
+repositories {
+    mavenCentral()
+}
+
+// Define Main Class
+application {
+    mainClassName = "org.Main"
+}
+
+// Define Source Sets
+sourceSets {
+    main {
+        java{
+            srcDirs("src/java", "src/resources")
+        }
+    }
+}
+
+// Allow User input output
+run{
+    standardInput = System.in
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.29'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.29'
+    implementation 'org.projectlombok:lombok:1.18.12'
+}
